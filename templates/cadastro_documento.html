@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Documento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">
+            Cadastrar Documento - <span class="text-warning">{{ frota.nome }}</span>
+        </h2>
+
+        <form method="POST" action="/cadastrar_documento/{{ frota.id }}" class="p-4 bg-secondary rounded shadow">
+            <div class="mb-3">
+                <label for="tipo_documento" class="form-label">Tipo de Documento</label>
+                <select name="tipo_documento" id="tipo_documento" class="form-select" required>
+                    <option value="">Selecione...</option>
+                    {% for doc in documentos %}
+                        <option value="{{ doc }}">{{ doc }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="data_vencimento" class="form-label">Data de Vencimento</label>
+                <input type="date" name="data_vencimento" id="data_vencimento" class="form-control" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Salvar Documento</button>
+                <a href="/frota/{{ frota.id }}" class="btn btn-light">Voltar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
