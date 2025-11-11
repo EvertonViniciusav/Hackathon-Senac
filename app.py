@@ -133,7 +133,8 @@ def cadastrar_documento(frota_id):
         'carro': ['IPVA', 'Licenciamento'],
         'caminhao': ['IPVA', 'Licenciamento', 'CIV', 'CIPP', 'Inmetro', 'Tacógrafo', 'Cadastro Técnico Federal', 'Autorização Ambiental para o Transporte Interestadual de Produtos Perigosos'],
         'aviao': ['Certificado de Nacionalidade e Matrícula', 'Certificado de Aeronavegabilidade', 'Certificado de Tipo', 'Certificação de Operador Aéreo', 'Autorização de Projeto de Conversão', 'Programas de Manutenção', 'Vistoria', 'Seguro Aeronáutico', 'Documentação Técnica Completa', 'Cumprimento de RBAC 121/135'],
-        'trem': ['Autorização de Uso da Infraestrutura', 'Concessão Ferroviária', 'Licença de Operação Ferroviária', 'Inspeção e Fiscalização de Infraestrutura', 'Segurança Operacional e Manutenção']
+        'trem': ['Autorização de Uso da Infraestrutura', 'Concessão Ferroviária', 'Licença de Operação Ferroviária', 'Inspeção e Fiscalização de Infraestrutura', 'Segurança Operacional e Manutenção'],
+        'embarcacao': ['Registro na Marinha do Brasil', 'Certificado de Registro de Embarcação (CRe)', 'Certificado de Segurança da Navegação', 'Alvará de Navegação', 'Licença Ambiental', 'Controle de Poluição', 'Caderneta de Inscrição e Registro (CIR) dos Tripulantes', 'Certificados de Capacitação de Tripulantes', 'Certificado de Inspeção da Embarcação', 'Seguro de Responsabilidade Civil', 'Licença de Operação (para embarcações comerciais)', 'Autorização para Embarcações de Turismo']
     }
 
     if request.method == 'POST':

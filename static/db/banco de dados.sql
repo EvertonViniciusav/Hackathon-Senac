@@ -12,7 +12,7 @@ CREATE TABLE frotas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
     nome VARCHAR(100),
-    tipo ENUM('moto', 'carro', 'caminhao', 'aviao', 'trem'),
+    tipo ENUM('moto', 'carro', 'caminhao', 'aviao', 'trem', 'embacacao'),
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
