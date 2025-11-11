@@ -59,8 +59,6 @@
     {% for frota in frotas %}
     <div class="col-md-3 mb-3">
       <div class="card bg-secondary text-light text-center position-relative">
-
-        <!-- Botão Excluir -->
         <form action="{{ url_for('excluir_frota', frota_id=frota.id) }}" method="POST"
               onsubmit="return confirm('Tem certeza que deseja excluir a frota {{ frota.nome }}?')" 
               class="position-absolute top-0 end-0 m-2">
@@ -68,8 +66,6 @@
             🗑️
           </button>
         </form>
-
-        <!-- Corpo do Card -->
         <div class="card-body" onclick="window.location.href='{{ url_for('frota', frota_id=frota.id) }}'">
           <h5 class="card-title">{{ frota.nome }}</h5>
           <p class="card-text text-capitalize">{{ frota.tipo }}</p>

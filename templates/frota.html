@@ -33,8 +33,6 @@
                         {% for doc in documentos %}
                             <tr>
                                 <td>{{ doc.tipo_documento }}</td>
-
-                                <!-- Se data vier como string use diretamente, se vier como date obj usa strftime -->
                                 <td>
                                   {% if doc.data_vencimento is string %}
                                     {{ doc.data_vencimento }}
@@ -42,7 +40,6 @@
                                     {{ doc.data_vencimento.strftime('%d/%m/%Y') }}
                                   {% endif %}
                                 </td>
-
                                 <td>
                                     {% set dias = (doc.data_vencimento - now().date()).days %}
                                     {% if dias < 0 %}
@@ -53,12 +50,8 @@
                                         {{ dias }} dias
                                     {% endif %}
                                 </td>
-
                                 <td class="text-center">
-                                    <!-- BOTÃO EDITAR -->
                                     <a href="{{ url_for('editar_documento', doc_id=doc.id) }}" class="btn btn-primary btn-sm me-1">Editar</a>
-
-                                    <!-- BOTÃO EXCLUIR -->
                                     <form action="/excluir_documento/{{ doc.id }}" method="POST" style="display:inline-block" onsubmit="return confirm('Tem certeza que deseja excluir este documento?');">
                                         <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
                                     </form>
