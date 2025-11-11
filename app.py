@@ -2,10 +2,14 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 from db import conectar
 from datetime import datetime, date
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 app.jinja_env.globals['now'] = datetime.now
-app.secret_key = "segredo_fleet"
+app.secret_key = os.getenv("SECRET_KEY")
 
 # ================= LOGIN =================
 @app.route('/', methods=['GET', 'POST'])
