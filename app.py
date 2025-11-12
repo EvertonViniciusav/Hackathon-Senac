@@ -259,7 +259,7 @@ def notificacoes_agendadas():
     while True:
         print("⏰ Verificando documentos com vencimento próximo...")
         gerar_relatorio_email()
-        time.sleep(60)
+        time.sleep(1000)
 
 
 if __name__ == "__main__":
