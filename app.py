@@ -5,6 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
 import mysql.connector
+import threading
+import time
+from notificacoes import gerar_relatorio_email
 
 load_dotenv()
 
@@ -252,6 +255,14 @@ def deletar_usuario(id):
     flash('Usuário removido com sucesso!', 'success')
     return redirect('/usuarios')
 
+def notificacoes_agendadas():
+    while True:
+        print("⏰ Verificando documentos com vencimento próximo...")
+        gerar_relatorio_email()
+        time.sleep(60)
+
 
 if __name__ == "__main__":
+    thread = threading.Thread(target=notificacoes_agendadas, daemon=True)
+    thread.start()
     app.run(debug=True)
