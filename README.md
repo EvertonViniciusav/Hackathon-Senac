@@ -39,7 +39,7 @@ O sistema foi desenvolvido para o **Hackathon Senac**, com foco em **eficiência
 ├── app.py                 # Arquivo principal Flask
 ├── notificacoes.py        # Envio automático de e-mails de vencimentos
 ├── templates/             # Páginas HTML (login, dashboard, frotas, usuários etc)
-├── static/                # CSS, JS e imagens
+├── static/                # CSS, JS, DB e imagens
 ├── .env                   # Credenciais
 ├── .gitignore             # Arquivos ignorados pelo Git
 ├── requirements.txt       # Dependências do projeto
@@ -87,7 +87,7 @@ pip install -r requirements.txt
 ```
 
 ### 4️⃣ Criar o banco de dados MySQL
-Execute o script SQL disponível em `scripts/criar_banco.sql` manualmente no MySQL Workbench.
+Execute o script SQL disponível em `static/db/banco de dados.sql` manualmente no MySQL Workbench.
 
 ### 5️⃣ Configurar variáveis de ambiente (.env)
 
@@ -119,7 +119,7 @@ http://127.0.0.1:5000/
 
 ## ⏰ Agendamento das Notificações
 
-O arquivo `notificacoes.py` pode ser executado automaticamente para enviar os e-mails de vencimento.
+O arquivo `notificacoes.py` sera executado automaticamente para enviar os e-mails de vencimento assim que o app.py for executado. Ou separadamente das formas abaixo:
 
 ### Opção 1 — Executar manualmente:
 ```bash
@@ -140,7 +140,7 @@ No **Linux**, adicione ao **crontab**:
 1. Usuário acessa o sistema e faz login.  
 2. No primeiro acesso, o **usuário master** pode criar novos usuários.  
 3. Cada usuário cadastra sua própria frota e documentos.  
-4. O sistema verifica os vencimentos e envia **notificações automáticas** (e-mail; WhatsApp opcional).  
+4. O sistema verifica os vencimentos e envia **notificações automáticas** 
 5. O usuário pode alterar, excluir e gerenciar seus próprios dados.  
 6. O master tem acesso total a todos os registros.
 
@@ -162,7 +162,7 @@ No **Linux**, adicione ao **crontab**:
 
 ## 👤 Usuário Master (acesso inicial)
 Após criar o banco, o usuário master no banco:
-- **E-mail:** master@admin.com  
+- **E-mail:** master@master.com  
 - **Senha:** master
 
 ---
