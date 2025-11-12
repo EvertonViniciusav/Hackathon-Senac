@@ -183,36 +183,31 @@ def editar_documento(doc_id):
     conexao.close()
     return render_template("editar_documento.html", documento=documento)
 
-# === PÁGINA DE USUÁRIOS (SOMENTE MASTER) ===
+# ======= PÁGINA DE USUÁRIOS (SOMENTE MASTER) =======
 @app.route('/usuarios')
 def usuarios():
     if 'usuario_id' not in session:
         return redirect('/')
-
-    # Verifica se o usuário logado é o master
     db = conectar()
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM usuarios WHERE id = %s", (session['usuario_id'],))
     usuario_logado = cursor.fetchone()
-
     if usuario_logado['email'] != 'master@admin.com':
         db.close()
         return redirect('/dashboard')
-
     cursor.execute("SELECT * FROM usuarios ORDER BY id ASC")
     usuarios = cursor.fetchall()
     db.close()
     return render_template('usuarios.html', usuarios=usuarios)
 
+# ======= ADICIONAR USUÁRIOS (SOMENTE MASTER) =======
 @app.route('/usuarios/adicionar', methods=['POST'])
 def adicionar_usuario():
     if 'usuario_id' not in session:
         return redirect('/')
-
     nome = request.form['nome']
     email = request.form['email']
     senha = generate_password_hash(request.form['senha'])
-
     try:
         db = conectar()
         cursor = db.cursor()
@@ -222,37 +217,33 @@ def adicionar_usuario():
         flash('Usuário adicionado com sucesso!', 'success')
     except mysql.connector.Error:
         flash('Erro: e-mail já cadastrado.', 'danger')
-
     return redirect('/usuarios')
 
+# ======= ALTERAR USUÁRIOS (SOMENTE MASTER) =======
 @app.route('/usuarios/editar/<int:id>', methods=['POST'])
 def editar_usuario(id):
     if 'usuario_id' not in session:
         return redirect('/')
-
     nome = request.form['nome']
     email = request.form['email']
     senha = request.form['senha']
-
     db = conectar()
     cursor = db.cursor()
-
     if senha.strip() != "":
         senha_hash = generate_password_hash(senha)
         cursor.execute("UPDATE usuarios SET nome=%s, email=%s, senha=%s WHERE id=%s", (nome, email, senha_hash, id))
     else:
         cursor.execute("UPDATE usuarios SET nome=%s, email=%s WHERE id=%s", (nome, email, id))
-
     db.commit()
     db.close()
     flash('Usuário atualizado com sucesso!', 'success')
     return redirect('/usuarios')
 
+# ======= DELETAR USUÁRIOS (SOMENTE MASTER) =======
 @app.route('/usuarios/deletar/<int:id>')
 def deletar_usuario(id):
     if 'usuario_id' not in session:
         return redirect('/')
-
     db = conectar()
     cursor = db.cursor()
     cursor.execute("DELETE FROM usuarios WHERE id = %s", (id,))
