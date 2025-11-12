@@ -53,6 +53,9 @@ def dashboard():
     db = conectar()
     cursor = db.cursor(dictionary=True)
     usuario_id = session['usuario_id']
+    cursor.execute("SELECT nome FROM usuarios WHERE id = %s", (usuario_id,))
+    usuario = cursor.fetchone()
+    usuario_nome = usuario["nome"] if usuario else "Usuário"
     cursor.execute("SELECT id, nome, tipo FROM frotas WHERE usuario_id = %s", (usuario_id,))
     frotas = cursor.fetchall()
     cursor.execute("""
@@ -70,7 +73,7 @@ def dashboard():
     """, (usuario_id,))
     documentos = cursor.fetchall()
     db.close()
-    return render_template('dashboard.html', frotas=frotas, contagem=contagem, documentos=documentos)
+    return render_template('dashboard.html', frotas=frotas, contagem=contagem, documentos=documentos, usuario_nome=usuario_nome)
 
 # ================= CADASTRAR FROTA =================
 @app.route('/cadastrar_frota', methods=['GET', 'POST'])
