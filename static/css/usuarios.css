@@ -1,0 +1,20 @@
+        body {
+            background-color: #212529;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .btn-primary, .btn-danger, .btn-warning {
+            border-radius: 10px;
+        }
+        .table th {
+            background-color: #343a40;
+            color: white;
+        }
+        .modal-content {
+            border-radius: 15px;
+        }
