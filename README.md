@@ -94,10 +94,12 @@ Execute o script SQL disponível em `static/db/banco de dados.sql` manualmente n
 Crie um arquivo **.env** na raiz do projeto com o seguinte conteúdo:
 
 ```
+SECRET_KEY=sua_chave_secreta
 DB_HOST=localhost
 DB_USER=seu_usuario
 DB_PASSWORD=sua_senha
 DB_NAME=hackathon
+MASTER_EMAIL=master@master
 EMAIL_USER=seuemail@gmail.com
 EMAIL_PASS=senha_de_aplicativo_gmail
 ```
