@@ -14,6 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 app.jinja_env.globals['now'] = datetime.now
 app.secret_key = os.getenv("SECRET_KEY")
+MASTER_EMAIL = os.getenv('MASTER_EMAIL')
 
 # ================= LOGIN =================
 @app.route('/', methods=['GET', 'POST'])
@@ -204,7 +205,7 @@ def usuarios():
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM usuarios WHERE id = %s", (session['usuario_id'],))
     usuario_logado = cursor.fetchone()
-    if usuario_logado['email'] != 'master@master.com':
+    if usuario_logado['email'] != MASTER_EMAIL:
         db.close()
         return redirect('/dashboard')
     cursor.execute("SELECT * FROM usuarios ORDER BY id ASC")
@@ -266,9 +267,8 @@ def deletar_usuario(id):
 
 def notificacoes_agendadas():
     while True:
-        print("⏰ Verificando documentos com vencimento próximo...")
         gerar_relatorio_email()
-        time.sleep(1000)
+        time.sleep(120)
 
 
 if __name__ == "__main__":

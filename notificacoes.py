@@ -59,9 +59,6 @@ def buscar_vencimentos():
 
 def gerar_relatorio_email():
     vencimentos = buscar_vencimentos()
-    if not vencimentos:
-        print("Nenhum documento vencido ou com vencimento próximo encontrado.")
-        return
     usuarios = {}
     for v in vencimentos:
         if v["usuario_email"] not in usuarios:

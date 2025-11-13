@@ -42,5 +42,5 @@ CREATE TABLE documentos (
 INSERT INTO usuarios (nome, email, senha, is_master)
 VALUES ('Administrador Master', 'master@master.com', 'scrypt:32768:8:1$1zd8d7tUI0ilUIL0$c828d7c5859aa3721533fdfdc2bb3b9fd7c356b16eb98688fa21382c39c18428379c1028e6c78fffb870c52550b55f6513fb57da397f387829179997ffd45f27', TRUE);
 
---usuario: master@master.com--
---senhas: master--
+-- usuario: master@master.com
+-- senhas: master
