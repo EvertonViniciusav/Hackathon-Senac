@@ -10,6 +10,7 @@ CREATE TABLE usuarios (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(120) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
+    tipo ENUM('master', 'usuario') DEFAULT 'usuario',
     is_master BOOLEAN DEFAULT FALSE
 );
 

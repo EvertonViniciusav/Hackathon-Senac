@@ -204,7 +204,7 @@ def usuarios():
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM usuarios WHERE id = %s", (session['usuario_id'],))
     usuario_logado = cursor.fetchone()
-    if usuario_logado['email'] != 'master@admin.com':
+    if usuario_logado['email'] != 'master@master.com':
         db.close()
         return redirect('/dashboard')
     cursor.execute("SELECT * FROM usuarios ORDER BY id ASC")
